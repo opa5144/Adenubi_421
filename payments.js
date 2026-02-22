@@ -54,4 +54,151 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+// routes/payments.js
+
+/**
+* @swagger
+* /payments:
+*   get:
+*     tags:
+*       - Payments
+*     summary: Retrieve a list of payments
+*     responses:
+*       200:
+*         description: Successfully retrieved a list of payments
+*         content:
+*           application/json:
+*             schema:
+*               type: array
+*               items:
+*                 type: object
+*                 properties:
+*                   _id:
+*                     type: string
+*                   orderID:
+*                     type: string
+*                   paymentType:
+*                     type: string
+*                   amount:
+*                     type: number
+*                   date:
+*                     type: string
+*                     format: date-time
+*   post:
+*     tags:
+*       - Payments
+*     summary: Create a new payment
+*     requestBody:
+*       required: true
+*       content:
+*         application/json:
+*           schema:
+*             type: object
+*             required:
+*               - orderID
+*               - paymentType
+*               - amount
+*               - date
+*             properties:
+*               orderID:
+*                 type: string
+*                 example: 698908c516d56bafb4769f6d
+*               paymentType:
+*                 type: string
+*                 example: Credit
+*               amount:
+*                 type: number
+*                 example: 50
+*               date:
+*                 type: string
+*                 format: date-time
+*                 example: 2025-08-24T04:00:00.000Z
+*     responses:
+*       201:
+*         description: Payment successfully created
+*         content:
+*           application/json:
+*             schema:
+*               type: object
+*               properties:
+*                 payment:
+*                   type: object
+*                   description: The created payment
+*                 message:
+*                   type: string
+*                   description: Processing message
+* /payments/{id}:
+*   patch:
+*     tags:
+*       - Payments
+*     summary: Update a payment by ID
+*     parameters:
+*       - in: path
+*         name: id
+*         required: true
+*         schema:
+*           type: string
+*         description: Payment ID
+*     requestBody:
+*       required: true
+*       content:
+*         application/json:
+*           schema:
+*             type: object
+*             properties:
+*               orderID:
+*                 type: string
+*               paymentType:
+*                 type: string
+*               amount:
+*                 type: number
+*               date:
+*                 type: string
+*                 format: date-time
+*     responses:
+*       200:
+*         description: Payment successfully updated
+*         content:
+*           application/json:
+*             schema:
+*               type: object
+*               properties:
+*                 _id:
+*                   type: string
+*                 orderID:
+*                   type: string
+*                 paymentType:
+*                   type: string
+*                 amount:
+*                   type: number
+*                 date:
+*                   type: string
+*                   format: date-time
+*       400:
+*         description: Invalid request
+*   delete:
+*     tags:
+*       - Payments
+*     summary: Delete a payment by ID
+*     parameters:
+*       - in: path
+*         name: id
+*         required: true
+*         schema:
+*           type: string
+*         description: Payment ID
+*     responses:
+*       200:
+*         description: Payment successfully deleted
+*         content:
+*           application/json:
+*             schema:
+*               type: object
+*               properties:
+*                 message:
+*                   type: string
+*       400:
+*         description: Invalid request
+*/
+
 module.exports = router;
